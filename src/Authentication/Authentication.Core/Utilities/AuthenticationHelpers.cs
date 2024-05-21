@@ -482,7 +482,7 @@ namespace Microsoft.Graph.PowerShell.Authentication.Core.Utilities
         {
             // Creating a httpclient that would handle all pop calls
             Uri popResourceUri = GraphSession.Instance.GraphRequestProofofPossession.Uri ?? new Uri("https://canary.graph.microsoft.com/beta/me"); //PPE (https://graph.microsoft-ppe.com) or Canary (https://canary.graph.microsoft.com) or (https://20.190.132.47/beta/me)
-            HttpClient popHttpClient = new(new HttpClientHandler { ServerCertificateCustomValidationCallback = (_, _, _, _) => true });
+            HttpClient popHttpClient = new(new HttpClientHandler());
 
             // Find the WWW-Authenticate header in the response.
             var popMethod = GraphSession.Instance.GraphRequestProofofPossession.HttpMethod ?? HttpMethod.Get;
@@ -498,7 +498,7 @@ namespace Microsoft.Graph.PowerShell.Authentication.Core.Utilities
 
             });
 
-            var _popPipeline = HttpPipelineBuilder.Build(popPipelineOptions, new HttpPipelineTransportOptions { ServerCertificateCustomValidationCallback = (_) => true });
+            var _popPipeline = HttpPipelineBuilder.Build(popPipelineOptions, new HttpPipelineTransportOptions());
             GraphSession.Instance.GraphRequestProofofPossession.Request = _popPipeline.CreateRequest();
             GraphSession.Instance.GraphRequestProofofPossession.Request.Method = ConvertToAzureRequestMethod(popMethod);
             GraphSession.Instance.GraphRequestProofofPossession.Request.Uri.Reset(popResourceUri);
