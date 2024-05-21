@@ -3,13 +3,9 @@
 // ------------------------------------------------------------------------------
 
 
-using Azure.Core;
-using Azure.Identity;
-using Azure.Identity.Broker;
 using Microsoft.Graph.Authentication;
 using Microsoft.Graph.PowerShell.Authentication.Core.Utilities;
 using Microsoft.Graph.PowerShell.Authentication.Extensions;
-using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;

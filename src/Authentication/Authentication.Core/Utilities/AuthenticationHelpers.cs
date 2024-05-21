@@ -1,7 +1,6 @@
 ﻿// ------------------------------------------------------------------------------
 //  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 // ------------------------------------------------------------------------------
-using Azure;
 using Azure.Core;
 using Azure.Core.Diagnostics;
 using Azure.Core.Pipeline;
@@ -17,10 +16,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -536,9 +532,6 @@ namespace Microsoft.Graph.PowerShell.Authentication.Core.Utilities
                     throw new ArgumentException($"Unsupported HTTP method: {httpMethod.Method}");
             }
         }
-    }
-    internal class PopClientOptions : ClientOptions
-    {
     }
     internal class PopClientOptions : ClientOptions
     {
