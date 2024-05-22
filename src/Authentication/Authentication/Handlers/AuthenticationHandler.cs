@@ -3,6 +3,7 @@
 // ------------------------------------------------------------------------------
 
 
+using Azure.Core;
 using Microsoft.Graph.Authentication;
 using Microsoft.Graph.PowerShell.Authentication.Core.Utilities;
 using Microsoft.Graph.PowerShell.Authentication.Extensions;
@@ -109,6 +110,7 @@ namespace Microsoft.Graph.PowerShell.Authentication.Handlers
                     var nonceStart = popChallenge.Parameter.IndexOf("nonce=\"") + "nonce=\"".Length;
                     var nonceEnd = popChallenge.Parameter.IndexOf('"', nonceStart);
                     GraphSession.Instance.GraphRequestProofofPossession.ProofofPossessionNonce = popChallenge.Parameter.Substring(nonceStart, nonceEnd - nonceStart);
+                    GraphSession.Instance.GraphRequestProofofPossession.PopTokenContext = new PopTokenRequestContext(GraphSession.Instance.AuthContext.Scopes, isProofOfPossessionEnabled: true, proofOfPossessionNonce: GraphSession.Instance.GraphRequestProofofPossession.ProofofPossessionNonce, request: GraphSession.Instance.GraphRequestProofofPossession.Request);
                 }
 
                 // Authenticate request using auth provider
